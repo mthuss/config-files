@@ -1,2 +1,2 @@
 # vimrc
-.vimrc for easy git cloning
+.vimrc for easy ```git clone```-ing
