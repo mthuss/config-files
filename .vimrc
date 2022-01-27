@@ -7,7 +7,7 @@ set wildmode=list:longest
 set incsearch
 set number relativenumber
 set undofile
-set undodir=$HOME/.vimundo
+set undodir=$HOME/.vimundo/
 set hlsearch
 set ttyfast
 
