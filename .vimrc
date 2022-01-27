@@ -11,10 +11,19 @@ set undodir=$HOME/.vimundo/
 set hlsearch
 set ttyfast
 
-"Keymaps
+"Misc Keymaps
 inoremap jj <esc>
 noremap <F5> :w<CR>:!gcc %<CR>:rightb vert term<CR>./a.out<CR>
 noremap <C-t> :rightb vert term<CR>
+"Keymaps for managing windows
+noremap - <C-w><
+noremap = <C-w>>
+noremap + <C-w>-
+noremap _ <C-w>+
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
 
 "Functions
 function InsertTabWrapper()
