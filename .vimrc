@@ -14,7 +14,6 @@ set ttyfast
 "Misc Keymaps
 inoremap jj <esc>
 noremap <F3> :set hlsearch!<CR>	
-"noremap <F5> :w<CR>:let $output=expand('%:r')<CR>:!gcc % -o %<<CR>:rightb vert term<CR>./$output<CR>
 noremap <F5> :w<CR>:!gcc % -o %< && ./%<<CR>
 
 "Open terminal in specific directions
@@ -25,10 +24,7 @@ noremap <C-t>k :term<CR>
 noremap <C-t>t :botright term<CR>
 
 "Keymaps for managing windows
-"noremap <C-n>h <C-w>v
 noremap <C-n> :rightb vert split<CR>
-"noremap <C-n>j :below split<CR>
-"noremap <C-n>k :above split<CR>
 noremap - <C-w><
 noremap = <C-w>>
 noremap + <C-w>-
