@@ -1,2 +1,2 @@
-# vimrc
-.vimrc for easy ```git clone```-ing
+# config files
+my config files for various applications
