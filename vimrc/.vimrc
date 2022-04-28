@@ -15,6 +15,7 @@ set ttyfast
 inoremap jj <esc>
 noremap <F3> :set hlsearch!<CR>	
 noremap <F5> :w<CR>:!gcc % -o %< && ./%<<CR>
+noremap c 0i//<esc>
 
 "Open terminal in specific directions
 noremap <C-t>l :rightb vert term<CR>
