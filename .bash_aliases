@@ -9,8 +9,9 @@ alias valias='vim $HOME/.bash_aliases'
 #Downloads bandcamp albums w/ proper formating and metadata
 alias bcdl='yt-dlp -o "%(playlist_index)s. %(title)s.%(ext)s" --add-metadata'
 
-mkcd () { mkdir $1 && cd $1; }
-
 #Shorten some common commands
 alias c='clear'
 alias e='exit'
+
+mkcd () { mkdir $1 && cd $1; }
+resize () { convert $2 -resize $1% $2; }
