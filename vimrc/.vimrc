@@ -15,7 +15,7 @@ set ttyfast
 inoremap jj <esc>
 noremap <F3> :set hlsearch!<CR>	
 noremap <F5> :w<CR>:!gcc % -o %< && ./%<<CR>
-noremap c 0i//<esc>
+noremap <C-e> :Texplore<CR>
 
 "Open terminal in specific directions
 noremap <C-t>l :rightb vert term<CR>
@@ -24,10 +24,15 @@ noremap <C-t>j :below term<CR>
 noremap <C-t>k :term<CR>
 noremap <C-t>t :botright term<CR>
 
+"Tabs
+noremap tn :tabnew<CR>
+noremap tk :tabnext<CR>
+noremap tj :tabprev<CR>
+
 "Keymaps for managing windows
 noremap <C-n> :rightb vert split<CR>
-noremap - <C-w><
-noremap = <C-w>>
+noremap < <C-w><
+noremap > <C-w>>
 noremap + <C-w>-
 noremap _ <C-w>+
 noremap <C-h> <C-w>h
