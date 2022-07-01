@@ -10,10 +10,13 @@ alias valias='vim $HOME/.bash_aliases'
 alias bcdl='yt-dlp -o "%(playlist_index)s. %(title)s.%(ext)s" --add-metadata'
 
 #Copies pwd to clipboard
-alias cpwd='pwd | xclip -selection clipboard'
+alias cpwd='pwd | xargs -i echo -n \"{}\"|  xclip -selection clipboard'
 #Shorten some common commands
 alias c='clear'
 alias e='exit'
+
+#Opens code-oss with liveshare apis enabled
+alias codels='code --enable-proposed-api ms-vsliveshare.vsliveshare'
 
 #mkcd () { mkdir "$1" && cd "$1"; }
 mkcd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
