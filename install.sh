@@ -13,9 +13,9 @@ function vimrc (){
 }
 
 function bash_aliases (){
-	[[ -f $HOME/.bashrc ]] && cat $HOME/.bashrc | grep .bash_aliases && cp $HOME/.bashrc $HOME/.bashrc.old
+	[[ -f $HOME/.bashrc ]] && cat $HOME/.bashrc | grep -q .bash_aliases && cp $HOME/.bashrc $HOME/.bashrc.old
 	[[ -f $HOME/.bash_aliases ]] && mv $HOME/.bash_aliases $HOME/.bash_aliases.old
-	cat $HOME/.bashrc | grep .bash_aliases && echo ".bashrc already has a .bash_aliases line" || (echo "[[ -f \$HOME/.bash_aliases ]] && source \$HOME/.bash_aliases" >> $HOME/.bashrc)
+	cat $HOME/.bashrc | grep -q .bash_aliases && echo ".bashrc already has a .bash_aliases line" || (echo "[[ -f \$HOME/.bash_aliases ]] && source \$HOME/.bash_aliases" >> $HOME/.bashrc &> /dev/null) 
 	cp .bash_aliases $HOME
 }
 
@@ -46,17 +46,51 @@ function alacritty_config (){
 	cp alacritty.yml $HOME/.config/alacritty/
 }
 
+function FSS (){
+	OS="$(lsb_release -is)"
+	if [[ "$(sudo -l)" ]]
+	then
+		[[ $OS == "ManjaroLinux" || $OS == "ArchLinux" ]] && sudo pacman -S vim alacritty code neofetch --needed
+		
+		[[ $OS == "Ubuntu" ]] && sudo apt install vim alacritty code neofetch
+		
+	fi
+
+	#vimrc
+	echo "installing vimrc"
+	[[ "$(which vim)" ]] &> /dev/null && vimrc || echo "vim not installed. Skipping..."
+
+	#bash aliases
+	echo "installing bash aliases"
+	[[ $SHELL == "/bin/bash" ]] && bash_aliases || echo "not using bash. Skipping..."
+
+	#vscode extensions
+	echo "installing vscode extensions"
+	[[ "$(which code)" ]]  &> /dev/null && bash vscode_exts || echo "vscode not installed. Skipping..."
+
+	#alacritty config
+	echo "installing alacritty config"
+	[[ "$(which alacritty)" ]] &> /dev/null && alacritty_config || echo "alacritty not installed. Skipping..."
+
+	#neofetch config
+	echo "installing neofetch config"
+	[[ "$(which neofetch)" ]] &> /dev/null && neofetch_config || echo "neofetch not installed. Skipping..."
+	 
+}
+
+echo -e "General Installation Script\n"
 PS3='Select an option: '
-options=("vimrc" "bashrc" "bash aliases" "neofetch" "mangohud" "kb shortcuts" "alacritty" "Quit")
+options=("First-time setup" "vimrc" "bash aliases" "neofetch" "mangohud" "kb shortcuts" "alacritty" "vscode" "Quit")
 select opt in "${options[@]}"
 do
 	case $opt in
+		"First-time setup")
+			echo "Performing first time setup"
+			FSS
+			;;
 		"vimrc")
 			echo "Installing vimrc"
 			vimrc
-			;;
-		"bashrc")
-			echo "not available yet"
 			;;
 		"bash aliases")
 			echo "Installing bash aliases"
@@ -77,6 +111,10 @@ do
 		"alacritty")
 			echo "Installing alacritty config"
 			alacritty_config
+			;;
+		"vscode")
+			echo "Installing vscode extensions"
+			bash vscode_exts
 			;;
 		"Quit")
 			break
