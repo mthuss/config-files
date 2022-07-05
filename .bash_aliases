@@ -14,9 +14,11 @@ alias cpwd='pwd | xargs -i echo -n \"{}\"|  xclip -selection clipboard'
 #Shorten some common commands
 alias c='clear'
 alias e='exit'
+alias la='ls -a'
 
 #Opens code-oss with liveshare apis enabled
 alias codels='code --enable-proposed-api ms-vsliveshare.vsliveshare'
+
 
 #mkcd () { mkdir "$1" && cd "$1"; }
 mkcd () { mkdir -p "$@" && eval cd "\"\$$#\""; }

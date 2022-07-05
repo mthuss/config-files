@@ -1,0 +1,7 @@
+{
+    "workbench.colorTheme": "Gruvbox Dark Soft",
+    "files.exclude": {
+        "**/*.class": true
+    },
+    "vim.vimrc.enable": true
+}

@@ -1,0 +1,4 @@
+code --install-extension jdinhlife.gruvbox
+code --install-extension ms-vsliveshare.vsliveshare
+code --install-extension redhat.java
+code --install-extension vscodevim.vim

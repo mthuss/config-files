@@ -46,6 +46,14 @@ function alacritty_config (){
 	cp alacritty.yml $HOME/.config/alacritty/
 }
 
+function vscode_config (){
+	[[ -d $HOME/.config/Code/ && ! -d $HOME/.config/Code\ -\ OSS/ ]] && VSC_PATH=$HOME/.config/Code/
+	[[ -d $HOME/.config/Code\ -\ OSS/ ]] && VSC_PATH=$HOME/.config/Code\ -\ OSS
+	bash vscode/vscode_exts
+	echo "installing config files"
+	[[ -f $VSC_PATH/User/settings.json ]] && mv "$VSC_PATH"/User/settings.json "$VSC_PATH"/User/settings.json.old 
+	cp vscode/settings.json "$VSC_PATH"/User/
+}
 function FSS (){
 	OS="$(lsb_release -is)"
 	if [[ "$(sudo -l)" ]]
@@ -64,9 +72,9 @@ function FSS (){
 	echo "installing bash aliases"
 	[[ $SHELL == "/bin/bash" ]] && bash_aliases || echo "not using bash. Skipping..."
 
-	#vscode extensions
-	echo "installing vscode extensions"
-	[[ "$(which code)" ]]  &> /dev/null && bash vscode_exts || echo "vscode not installed. Skipping..."
+	#vscode config
+	echo "configuring vscode"
+	[[ "$(which code)" ]]  &> /dev/null && vscode_config || echo "vscode not installed. Skipping..."
 
 	#alacritty config
 	echo "installing alacritty config"
@@ -75,12 +83,21 @@ function FSS (){
 	#neofetch config
 	echo "installing neofetch config"
 	[[ "$(which neofetch)" ]] &> /dev/null && neofetch_config || echo "neofetch not installed. Skipping..."
+
+	#gitconfig
+	echo "installing gitconfig"
+	gitconfig
 	 
+}
+
+function gitconfig (){
+	[[ -f $HOME/.gitconfig ]] && mv $HOME/.gitconfig $HOME/.gitconfig.old
+	cp .gitconfig $HOME/.gitconfig
 }
 
 echo -e "General Installation Script\n"
 PS3='Select an option: '
-options=("First-time setup" "vimrc" "bash aliases" "neofetch" "mangohud" "kb shortcuts" "alacritty" "vscode" "Quit")
+options=("First-time setup" "vimrc" "bash aliases" "neofetch" "mangohud" "kb shortcuts" "alacritty" "vscode" "gitconfig" "Quit")
 select opt in "${options[@]}"
 do
 	case $opt in
@@ -113,8 +130,12 @@ do
 			alacritty_config
 			;;
 		"vscode")
-			echo "Installing vscode extensions"
-			bash vscode_exts
+			echo "configuring vscode"
+			vscode_config
+			;;
+		"gitconfig")
+			echo "Installing gitconfig"
+			gitconfig
 			;;
 		"Quit")
 			break
