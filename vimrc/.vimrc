@@ -15,7 +15,7 @@ set ttyfast
 inoremap jj <esc>
 noremap <F3> :set hlsearch!<CR>	
 noremap <F5> :w<CR>:!gcc % -o %< && ./%<<CR>
-noremap <C-e> :Texplore<CR>
+noremap <C-e> :NERDTreeToggle<CR>
 
 "Open terminal in specific directions
 noremap <C-t>l :rightb vert term<CR>
@@ -54,20 +54,33 @@ inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 " STATUS LINE ------------------------------------------------------------ {{{
 
 " Clear status line when vimrc is reloaded.
-set statusline=
+"set statusline=
 
 " Status line left side.
-set statusline+=\ %F\ %M\ %R
+"set statusline+=\ %F\ %M\ %R
 
 " Use a divider to separate the left side from the right side.
-set statusline+=%=
+"set statusline+=%=
 
 " Status line right side.
-set statusline+=\ ascii:\ %b\ row:\ %l\ col:\ %c
+"set statusline+=\ ascii:\ %b\ row:\ %l\ col:\ %c
 
 " Show the status on the second to last line.
-set laststatus=2
+"set laststatus=2
 
 "Statusline color
-hi StatusLine ctermbg=white ctermfg=97
+"hi StatusLine ctermbg=white ctermfg=97
 " }}}
+
+hi Normal guibg=NONE ctermbg=NONE
+
+"Plugin Stuff
+call plug#begin()
+  Plug 'preservim/nerdtree'
+  Plug 'ryanoasis/vim-devicons'
+  Plug 'itchyny/lightline.vim'
+call plug#end()
+
+let g:lightline = {
+	      \ 'colorscheme': 'darcula',
+      \ }

@@ -16,7 +16,7 @@ function bash_aliases (){
 	[[ -f $HOME/.bashrc ]] && cat $HOME/.bashrc | grep -q .bash_aliases && cp $HOME/.bashrc $HOME/.bashrc.old
 	[[ -f $HOME/.bash_aliases ]] && mv $HOME/.bash_aliases $HOME/.bash_aliases.old
 	cat $HOME/.bashrc | grep -q .bash_aliases && echo ".bashrc already has a .bash_aliases line" || (echo "[[ -f \$HOME/.bash_aliases ]] && source \$HOME/.bash_aliases" >> $HOME/.bashrc &> /dev/null) 
-	cp .bash_aliases $HOME
+	cp .bash_aliases $HOME && source $HOME/.bashrc
 }
 
 function neofetch_config (){
