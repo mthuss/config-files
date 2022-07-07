@@ -15,6 +15,8 @@ alias cpwd='pwd | xargs -i echo -n \"{}\"|  xclip -selection clipboard'
 alias c='clear'
 alias e='exit'
 alias la='ls -a'
+alias ll='ls -l'
+alias lla='ls -la'
 
 #Opens code-oss with liveshare apis enabled
 alias codels='code --enable-proposed-api ms-vsliveshare.vsliveshare'
